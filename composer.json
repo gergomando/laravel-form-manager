@@ -1,0 +1,24 @@
+{
+    "name": "webmuscets/laravel-form-manager",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Gergo Mando",
+            "email": "gergo.mando@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "webmuscets\\FormManager\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "webmuscets\\FormManager\\FormManagerServiceProvider"
+            ]
+        }
+    }
+}
