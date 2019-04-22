@@ -1,25 +1,25 @@
 <?php 
-namespace App\Libraries\FormManager\Creator\Controllers;
+namespace webmuscets\FormManager\Creator\Controllers;
 
 use Redirect;
 use App\Http\Controllers\Controller;
-use App\Libraries\FormManager\Creator\Models\Form;
-use App\Libraries\FormManager\Creator\Models\FormField;
-use App\Libraries\FormManager\Creator\Form as FormCreator;
-use App\Libraries\FormManager\Render\Form as FormRender;
-use App\Libraries\FormManager\Creator\Requests\FormRequest;
+use webmuscets\FormManager\Creator\Models\Form;
+use webmuscets\FormManager\Creator\Models\FormField;
+use webmuscets\FormManager\Creator\Form as FormCreator;
+use webmuscets\FormManager\Render\Form as FormRender;
+use webmuscets\FormManager\Creator\Requests\FormRequest;
 
 class FormController extends Controller {
 	public function index() {
 		$items = Form::all();
-		return view('form-creator::index',compact('items'));
+		return view('form-manager-creator::index',compact('items'));
 	}
 
 	public function create() {
 		$form = new FormRender;
 		$form->config = [
 			'method' => 'POST',
-			'url' => '/dashboard/form-manager/forms',
+			'url' => '/form-manager/forms',
 		];
 		$form->fields = [
 			'name' => [
@@ -61,7 +61,7 @@ class FormController extends Controller {
 
 		$form = $form->render();
 		$title = 'Form létrehozása';
-		return view('form-creator::form',compact('form','title'));
+		return view('form-manager-creator::form',compact('form','title'));
 	}
 
 	public function store(FormRequest $request) {
@@ -77,7 +77,7 @@ class FormController extends Controller {
 			FormField::create($field);
 		}
 
-		return Redirect::to('/dashboard/form-manager');
+		return Redirect::to('/form-manager');
 	}
 
 	public function edit($id) {
@@ -85,7 +85,7 @@ class FormController extends Controller {
 		$form = new FormRender;
 		$form->config = [
 			'method' => 'PUT',
-			'url' => '/dashboard/form-manager/forms/'.$id,
+			'url' => '/form-manager/forms/'.$id,
 		];
 		$form->values = $item;
 		$form->fields = [
@@ -128,7 +128,7 @@ class FormController extends Controller {
 
 		$form = $form->render();
 		$title = 'Form szerkesztése';
-		return view('form-creator::form',compact('form','title'));
+		return view('form-manager-creator::form',compact('form','title'));
 	}
 
 	public function update(FormRequest $request, $id) {
@@ -155,7 +155,7 @@ class FormController extends Controller {
 			$fieldItem->delete();
 		}
 
-		return Redirect::to('/dashboard/form-manager');
+		return Redirect::to('/form-manager');
 	}
 
 	public function destroy() {

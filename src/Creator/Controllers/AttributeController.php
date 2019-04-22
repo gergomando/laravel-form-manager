@@ -1,12 +1,12 @@
 <?php 
-namespace App\Libraries\FormManager\Creator\Controllers;
+namespace webmuscets\FormManager\Creator\Controllers;
 
 use Redirect;
 use App\Http\Controllers\Controller;
-use App\Libraries\FormManager\Creator\Models\Form;
-use App\Libraries\FormManager\Creator\Models\FormFieldAttribute;
-use App\Libraries\FormManager\Render\Form as FormRender;
-use App\Libraries\FormManager\Creator\Requests\FieldAttributeRequest;
+use webmuscets\FormManager\Creator\Models\Form;
+use webmuscets\FormManager\Creator\Models\FormFieldAttribute;
+use webmuscets\FormManager\Render\Form as FormRender;
+use webmuscets\FormManager\Creator\Requests\FieldAttributeRequest;
 
 class AttributeController extends Controller {
 	public function index($id) {
@@ -23,7 +23,7 @@ class AttributeController extends Controller {
 		$form = new FormRender;
 		$form->config = [
 			'method' => 'POST',
-			'url' => '/dashboard/form-manager/forms/'.$id.'/attributes',
+			'url' => '/form-manager/forms/'.$id.'/attributes',
 		];
 		$form->fields = [
 			'attributes' => [
@@ -61,7 +61,7 @@ class AttributeController extends Controller {
 
 		$form = $form->render();
 		$title = 'Form Inputok Attribútumainak szerkesztése';
-		return view('form-creator::form',compact('form','title'));
+		return view('form-manager-creator::form',compact('form','title'));
 	}
 
 	public function update(FieldAttributeRequest $request, $id) {
@@ -78,7 +78,7 @@ class AttributeController extends Controller {
 			$attribute->delete();
 		}
 
-		return Redirect::to('/dashboard/form-manager');
+		return Redirect::to('/form-manager');
 	}
 
 }

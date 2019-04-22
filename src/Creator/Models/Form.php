@@ -1,4 +1,4 @@
-<?php namespace App\Libraries\FormManager\Creator\Models;
+<?php namespace webmuscets\FormManager\Creator\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

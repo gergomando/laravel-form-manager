@@ -1,4 +1,4 @@
-@include('form::components')
+@include('form-manager-render::components')
 
 {{{ Form::open($form['config']) }}}
 

@@ -8,7 +8,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "laravelcollective/html": "^5.4.0"
+    },
     "autoload": {
         "psr-4": {
             "webmuscets\\FormManager\\": "src/"

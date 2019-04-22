@@ -1,6 +1,6 @@
-<?php namespace App\Libraries\FormManager\Creator\Requests;
+<?php namespace webmuscets\FormManager\Creator\Requests;
 
-use App\Libraries\FormManager\Creator\Requests\Request;
+use webmuscets\FormManager\Creator\Requests\Request;
 
 class FormRequest extends Request {
 

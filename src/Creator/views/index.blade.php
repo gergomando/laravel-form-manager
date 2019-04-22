@@ -1,4 +1,4 @@
-@extends('admin.main')
+@extends('form-manager-creator.main')
 @section('content')
 
 <div class="content">
@@ -11,7 +11,7 @@
                 <h4>
                   <span>Formok</span>
 
-                    <a href="/dashboard/form-manager/forms/create" class="pull-right btn btn-sm btn-info">
+                    <a href="/form-manager/forms/create" class="pull-right btn btn-sm btn-info">
                       új form
                     </a>
                 </h4>
@@ -44,15 +44,15 @@
                     </td>
 
                     <td>
-                        <a class="btn btn-warning btn-sm" href="/dashboard/form-manager/forms/{{{ $item->id }}}/edit" >
+                        <a class="btn btn-warning btn-sm" href="/form-manager/forms/{{{ $item->id }}}/edit" >
                           <i class='fa fa-pencil'></i>
                         </a>
-                        <a class="btn btn-warning btn-sm" href="/dashboard/form-manager/forms/{{{ $item->id }}}/attributes" >
+                        <a class="btn btn-warning btn-sm" href="/form-manager/forms/{{{ $item->id }}}/attributes" >
                           <i class='fa fa-list'></i>
                         </a>
 
                         @if(empty($item->fields))
-                        <form method="POST" action="/dashboard/form-manager/forms/{{{ $item->id }}}" style="display:inline">
+                        <form method="POST" action="/form-manager/forms/{{{ $item->id }}}" style="display:inline">
                             <input name="_method" type="hidden" value="DELETE">
                             @csrf
                             <button  class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></button>

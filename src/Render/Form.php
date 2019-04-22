@@ -1,4 +1,4 @@
-<?php namespace App\Libraries\FormManager\Render;
+<?php namespace webmuscets\FormManager\Render;
 
 class Form {
   public $values = [];
@@ -13,8 +13,6 @@ class Form {
   public $fields = [];
 
   public function render() {
-      view()->addNamespace('form', app_path('Libraries/FormManager/Render/views'));
-
       $this->fields = $this->setFieldsProperties();
 
       $form = [
@@ -23,7 +21,7 @@ class Form {
         'fields' => $this->fields,
       ];
 
-      return view('form::render', ['form' => $form])->render();
+      return view('form-manager-render::render', ['form' => $form])->render();
   }
 
   private function setFieldsProperties() {

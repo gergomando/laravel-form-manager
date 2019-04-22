@@ -8,5 +8,5 @@
 			<span class="form-check-sign"><span class="check"></span></span>
 		</label>
 	</div>
-    @include('form::components.validation')
+    @include('form-manager-render::components.validation')
 </div>

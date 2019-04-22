@@ -1,5 +1,5 @@
-<?php namespace App\Libraries\FormManager\Creator;
-use App\Libraries\FormManager\Creator\Models\Form as CreatorForm;
+<?php namespace webmuscets\FormManager\Creator;
+use webmuscets\FormManager\Creator\Models\Form as CreatorForm;
 
 class Form {
 

@@ -2,4 +2,4 @@
     :input-name="'{{{ $column }}}'"
     :show-preview="true"
 ></fileupload-component>
-@include('form::components.validation')
+@include('form-manager-render::components.validation')

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\FormManager\Creator\Requests;
+namespace webmuscets\FormManager\Creator\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
