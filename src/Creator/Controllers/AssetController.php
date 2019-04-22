@@ -1,5 +1,5 @@
 <?php 
-namespace webmuscets\FormManager\Controllers;
+namespace webmuscets\FormManager\Creator\Controllers;
 
 use App\Http\Controllers\Controller;
 

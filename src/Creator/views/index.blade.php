@@ -1,4 +1,4 @@
-@extends('form-manager-creator.main')
+@extends('form-manager-creator::main')
 @section('content')
 
 <div class="content">
