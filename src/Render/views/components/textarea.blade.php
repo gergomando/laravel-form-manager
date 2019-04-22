@@ -1,6 +1,6 @@
-<div class="form-group"
+<div class="form-group" 
 @if(isset($attributes['hidden']) && $attributes['hidden'])
-style="display:none"; 
+style="display:none"
 @endif
 >
     {{ Form::label($column, $label, ['class' => 'control-label']) }}

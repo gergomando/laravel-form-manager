@@ -1,6 +1,6 @@
 <div
 @if(isset($attributes['hidden']) && $attributes['hidden'])
-style="display:none"; 
+ style="display:none"
 @endif
 >
 <fileupload-component
