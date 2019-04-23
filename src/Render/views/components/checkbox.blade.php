@@ -4,7 +4,7 @@
 			{{{ $label }}}
 		</div>
 		<label class="form-check-label">
-			{{{ Form::checkbox($column, 1, $value, ['class' => 'form-check-input']) }}}
+			{{{ Form::checkbox($column, 1, $value, array_merge(['class' => 'form-check-input'], $attributes)) }}}
 			<span class="form-check-sign"><span class="check"></span></span>
 		</label>
 	</div>

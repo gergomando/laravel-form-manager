@@ -4,7 +4,7 @@
 
 {{{ Form::component('fieldCheckbox', 'form-manager-render::components.checkbox', ['label', 'column', 'value' => null, 'attributes' => []]) }}}
 
-{{{ Form::component('fieldFile', 'form-manager-render::components.file', ['label', 'column','value' => 0, 'attributes' => []]) }}}
+{{{ Form::component('fieldFile', 'form-manager-render::components.file', ['label', 'column', 'attributes' => []]) }}}
 
 {{{ Form::component('fieldSelect', 'form-manager-render::components.select', ['label', 'column', 'default', 'list' => [], 'attributes' => []]) }}}
 
