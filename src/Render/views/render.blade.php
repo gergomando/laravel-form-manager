@@ -4,9 +4,9 @@
 
 @foreach($form['fields'] as $name => $field)
 
-	@if(!isset($field['type']) || $field['type'] == 'text')
-		{{{ Form::fieldText($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
-	@else
+    @if(!isset($field['type']) || $field['type'] == 'text')
+        {{{ Form::fieldText($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
+    @else
         @if($field['type'] == 'datepicker')
             {{{ Form::fieldDatepicker($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
         @endif
@@ -29,6 +29,10 @@
 
         @if($field['type'] == 'textarea')
             {{{ Form::fieldTextarea($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
+        @endif
+
+        @if($field['type'] == 'texteditor')
+            {{{ Form::fieldTexteditor($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
         @endif
 
         @if($field['type'] == 'multiline')

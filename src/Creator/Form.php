@@ -11,14 +11,14 @@ class Form {
     $fields = [];
 
     foreach ($originalFields as $field) {
-    	$fields[$field->name] = [
-    		'type' => $field->type,
-    		'label' => $field->label,
-    		'attributes' => $field->attributes()->pluck('value','attribute')->all(),
-    	];
+      $fields[$field->name] = [
+        'type' => $field->type,
+        'label' => $field->label,
+        'attributes' => $field->attributes()->pluck('value','attribute')->all(),
+      ];
     }
 
-  	return $fields;
+    return $fields;
   }
 
   public function getFormAttributes($type) {
@@ -31,6 +31,7 @@ class Form {
       'text' => 'text',
       'select' => 'select',
       'textarea' => 'textarea',
+      'texteditor' => 'texteditor',
       'email' => 'email',
       'password' => 'password',
       'file' => 'file',
