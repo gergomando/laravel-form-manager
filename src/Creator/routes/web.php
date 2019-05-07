@@ -1,7 +1,7 @@
 <?php
     
 
- Route::group(['namespace' => 'webmuscets\FormManager\Creator\Controllers','prefix' => 'form-manager', 'middleware' => ['web']], function(){
+ Route::group(['namespace' => 'webmuscets\FormManager\Creator\Controllers','prefix' => 'form-manager', 'middleware' => ['auth']], function(){
 
 	Route::get('/', 'FormController@index');
 	Route::resource('/forms', 'FormController');
