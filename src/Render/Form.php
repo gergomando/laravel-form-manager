@@ -12,16 +12,30 @@ class Form {
 
   public $fields = [];
 
+  private function getForm() {
+    return [
+      'config' => $this->config,
+      'fields' => $this->setFieldsProperties(),
+    ];
+  }
+
   public function render() {
-      $this->fields = $this->setFieldsProperties();
+      return view('form-manager-render::form', ['form' => $this->getForm()])->render();
+  }
 
-      $form = [
-        'config' => $this->config,
-        'lists' => $this->lists,
-        'fields' => $this->fields,
-      ];
+  public function renderElements() {
+      $form = $this->getForm();
+      $formObject = (object) [];
+      
+      $formObject->open = view('form-manager-render::open',['form' => $form])->render();
+      $formObject->close = view('form-manager-render::close')->render();
+      $formObject->fields = [];
 
-      return view('form-manager-render::render', ['form' => $form])->render();
+      foreach ($form['fields'] as $fieldName => $field) {
+        $formObject->fields[$fieldName] = view('form-manager-render::field', ['field' => $field])->render() ;
+      }
+
+      return $formObject;
   }
 
   private function setFieldsProperties() {

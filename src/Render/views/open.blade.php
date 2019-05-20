@@ -1,0 +1,1 @@
+{{{ Form::open($form['config']) }}}
