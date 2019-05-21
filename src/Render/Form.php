@@ -55,6 +55,10 @@ class Form {
         $fields[$name]['value'] = '';
 
       $fields[$name]['name'] = $this->setInputName($name);
+      
+      if(isset($fields[$name]['type']) && $fields[$name]['type'] == 'multiline')
+        $fields[$name]['name'] = $name;
+
     }
 
     $fields = $this->removeDisabledFields($fields);
