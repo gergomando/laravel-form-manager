@@ -46,6 +46,10 @@ class Form {
       if(!isset($element['attributes']))
         $fields[$name]['attributes'] = [];
     
+      if(isset($fields[$name]['type']) && $fields[$name]['type'] == 'select') {
+        $fields[$name]['list'] = [];
+      }
+
       if(isset($this->lists[$name]))
         $fields[$name]['list'] = $this->lists[$name];
 

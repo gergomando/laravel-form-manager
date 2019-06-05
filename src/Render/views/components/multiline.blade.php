@@ -1,6 +1,6 @@
 @if($label)
 <div class="form-group">
-	{{ Form::label($column, $label, ['class' => 'control-label']) }}
+	{{ Form::label($column, $label ? $label : ' ', ['class' => 'control-label']) }}
 </div>
 @endif
 	

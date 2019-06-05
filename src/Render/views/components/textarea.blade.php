@@ -3,7 +3,7 @@
 style="display:none"
 @endif
 >
-    {{ Form::label($column, $label, ['class' => 'control-label']) }}
+    {{ Form::label($column, $label ? $label : ' ', ['class' => 'control-label']) }}
     {{ Form::textarea($column, $value, array_merge(['class' => 'form-control', 'rows' => 3], $attributes)) }}
     @include('form-manager-render::components.validation')
 </div>

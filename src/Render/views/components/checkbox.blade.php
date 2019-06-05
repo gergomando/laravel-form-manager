@@ -1,7 +1,7 @@
 <div class="form-group">
 	<div class="form-check">
 		<div>
-			{{{ $label }}}
+			{{{ $label ? $label : ' ' }}}
 		</div>
 		<label class="form-check-label">
 			{{{ Form::checkbox($column, 1, $value, array_merge(['class' => 'form-check-input'], $attributes)) }}}
