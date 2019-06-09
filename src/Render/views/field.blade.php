@@ -18,6 +18,10 @@
         {{{ Form::fieldSelect($field['label'], $field['name'],$field['value'], $field['list'], $field['attributes']) }}}
     @endif
 
+    @if($field['type'] == 'multiselect')
+        {{{ Form::fieldMultiSelect($field['label'], $field['name'],$field['value'], $field['list'], $field['attributes']) }}}
+    @endif
+
     @if($field['type'] == 'password')
         {{{ Form::fieldPassword($field['label'], $field['name'], $field['attributes']) }}}
     @endif

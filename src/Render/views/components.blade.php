@@ -10,6 +10,8 @@
 
 {{{ Form::component('fieldSelect', 'form-manager-render::components.select', ['label', 'column', 'default', 'list' => [], 'attributes' => []]) }}}
 
+{{{ Form::component('fieldMultiSelect', 'form-manager-render::components.multiselect', ['label', 'column', 'default', 'list' => [], 'attributes' => []]) }}}
+
 {{{ Form::component('fieldEmail', 'form-manager-render::components.email', ['label', 'column', 'value' => null, 'attributes' => []]) }}}
 
 {{{ Form::component('fieldPassword', 'form-manager-render::components.password', ['label', 'column', 'attributes' => []]) }}}

@@ -46,7 +46,7 @@ class Form {
       if(!isset($element['attributes']))
         $fields[$name]['attributes'] = [];
     
-      if(isset($fields[$name]['type']) && $fields[$name]['type'] == 'select') {
+      if(isset($fields[$name]['type']) && in_array($fields[$name]['type'], ['select','multiselect'])) {
         $fields[$name]['list'] = [];
       }
 
