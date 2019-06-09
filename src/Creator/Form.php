@@ -30,6 +30,7 @@ class Form {
     return [
       'text' => 'text',
       'select' => 'select',
+      'multiselect' => 'multiselect',
       'textarea' => 'textarea',
       'texteditor' => 'texteditor',
       'email' => 'email',
