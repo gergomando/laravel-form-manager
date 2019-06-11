@@ -39,6 +39,7 @@ class Form {
       'hidden' => 'hidden',
       'checkbox' => 'checkbox',
       'multiline' => 'multiline',
+      'maskedinput' => 'maskedinput',
       'datepicker' => 'datepicker',
     ];
   }

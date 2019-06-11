@@ -4,6 +4,8 @@
 
 {{{ Form::component('fieldTexteditor', 'form-manager-render::components.texteditor', ['label', 'column', 'value' => null, 'attributes' => []]) }}}
 
+{{{ Form::component('fieldMaskedInput', 'form-manager-render::components.maskedinput', ['label', 'column', 'value' => null, 'attributes' => []]) }}}
+
 {{{ Form::component('fieldCheckbox', 'form-manager-render::components.checkbox', ['label', 'column', 'value' => null, 'attributes' => []]) }}}
 
 {{{ Form::component('fieldFile', 'form-manager-render::components.file', ['label', 'column','value' => 0, 'attributes' => []]) }}}

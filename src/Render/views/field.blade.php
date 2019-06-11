@@ -22,6 +22,10 @@
         {{{ Form::fieldMultiSelect($field['label'], $field['name'],$field['value'], $field['list'], $field['attributes']) }}}
     @endif
 
+    @if($field['type'] == 'maskedinput')
+        {{{ Form::fieldMaskedInput($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
+    @endif
+
     @if($field['type'] == 'password')
         {{{ Form::fieldPassword($field['label'], $field['name'], $field['attributes']) }}}
     @endif
