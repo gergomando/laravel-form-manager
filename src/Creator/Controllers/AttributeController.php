@@ -10,7 +10,7 @@ use webmuscets\FormManager\Creator\Requests\FieldAttributeRequest;
 
 class AttributeController extends Controller {
 	public function index($slug) {
-		$form = config('form-manager.forms.'.$slug);
+		$form = config('form-manager.'.$slug);
 
 		$attributes = [];
 		$fields = [];
@@ -67,7 +67,7 @@ class AttributeController extends Controller {
 	public function update(FieldAttributeRequest $request, $slug) {
 		$inputs = $request->all()['crud'];
 		
-		$forms = config('form-manager.forms');
+		$forms = config('form-manager');
 
 		foreach ($inputs['attributes'] as $key => $field) {
 			$forms[$slug]['fields'][$field['field']]['attributes'][$field['attribute']] = $field['value'];

@@ -11,7 +11,7 @@ use webmuscets\FormManager\Creator\Requests\FormRequest;
 
 class FormController extends Controller {
 	public function index() {
-		$items = config()->get('form-manager.forms');
+		$items = config('form-manager');
 		return view('form-manager-creator::index',compact('items'));
 	}
 
@@ -73,7 +73,7 @@ class FormController extends Controller {
 			$newInputs['fields'][$field['name']] = $field;
 		}
 
-		$array = config('form-manager.forms') + [$inputs['slug'] => $newInputs];
+		$array = config('form-manager') + [$inputs['slug'] => $newInputs];
 	    $data = var_export($array, 1);
 	    if(\File::put(base_path() . '/config/form-manager/forms.php', "<?php\n return $data ;"))
 	    	\Artisan::call('config:cache');
@@ -82,7 +82,7 @@ class FormController extends Controller {
 	}
 
 	public function edit($slug) {
-		$formData = config('form-manager.forms.product-create');
+		$formData = config('form-manager.'.$slug);
 		$form = new FormRender;
 		$form->config = [
 			'method' => 'PUT',
@@ -135,7 +135,7 @@ class FormController extends Controller {
 	public function update(FormRequest $request, $slug) {
 		$inputs = $request->all()['crud'];
 		
-		$existingForms = config('form-manager.forms');
+		$existingForms = config('form-manager');
 		
 		$newInputs = $inputs;
 		$newInputs['fields'] = [];

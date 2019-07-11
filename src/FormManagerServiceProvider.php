@@ -11,6 +11,10 @@ use Illuminate\Support\ServiceProvider;
         
         	$this->loadRoutesFrom(__DIR__.'/Creator/routes/web.php');
             $this->loadMigrationsFrom(__DIR__.'/Creator/migrations');
+       
+            $this->publishes([
+                __DIR__.'/config/form-manager.php' => config_path('form-manager.php'),
+            ],'form-manager');
         }
         
         public function register()
