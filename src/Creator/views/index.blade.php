@@ -37,22 +37,22 @@
                   @foreach($items as $item)
                   <tr>
                     <td>
-                      {{{ $item->name }}}
+                      {{{ $item['name'] }}}
                     </td>
                     <td>
-                      {{{ $item->slug }}}
+                      {{{ $item['slug'] }}}
                     </td>
 
                     <td>
-                        <a class="btn btn-warning btn-sm" href="/form-manager/forms/{{{ $item->id }}}/edit" >
+                        <a class="btn btn-warning btn-sm" href="/form-manager/forms/{{{ $item['slug'] }}}/edit" >
                           <i class='fa fa-pencil'></i>
                         </a>
-                        <a class="btn btn-warning btn-sm" href="/form-manager/forms/{{{ $item->id }}}/attributes" >
+                        <a class="btn btn-warning btn-sm" href="/form-manager/forms/{{{ $item['slug'] }}}/attributes" >
                           <i class='fa fa-list'></i>
                         </a>
 
                         @if(empty($item->fields))
-                        <form method="POST" action="/form-manager/forms/{{{ $item->id }}}" style="display:inline">
+                        <form method="POST" action="/form-manager/forms/{{{ $item['slug'] }}}" style="display:inline">
                             <input name="_method" type="hidden" value="DELETE">
                             @csrf
                             <button  class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></button>

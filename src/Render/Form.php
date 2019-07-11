@@ -40,6 +40,7 @@ class Form {
 
   private function setFieldsProperties() {
     $fields = [];
+
     foreach ($this->fields as $name => $element) {
       $fields[$name] = $element;
 

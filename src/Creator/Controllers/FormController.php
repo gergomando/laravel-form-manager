@@ -11,7 +11,7 @@ use webmuscets\FormManager\Creator\Requests\FormRequest;
 
 class FormController extends Controller {
 	public function index() {
-		$items = Form::all();
+		$items = config()->get('form-manager.forms');
 		return view('form-manager-creator::index',compact('items'));
 	}
 
@@ -66,28 +66,30 @@ class FormController extends Controller {
 
 	public function store(FormRequest $request) {
 		$inputs = $request->all()['crud'];
-		$form = new Form;
-		$form->fill([
-			'name' => $inputs['name'],
-			'slug' => $inputs['slug'],
-		])->save(); 
-
-		foreach ($inputs['fields'] as $field) {
-			$field['form_id'] = $form->id;
-			FormField::create($field);
+		
+		$newInputs = $inputs;
+		$newInputs['fields'] = [];
+		foreach ($inputs['fields'] as $key => $field) {
+			$newInputs['fields'][$field['name']] = $field;
 		}
+
+		$array = config('form-manager.forms') + [$inputs['slug'] => $newInputs];
+	    $data = var_export($array, 1);
+	    if(\File::put(base_path() . '/config/form-manager/forms.php', "<?php\n return $data ;"))
+	    	\Artisan::call('config:cache');
 
 		return Redirect::to('/form-manager');
 	}
 
-	public function edit($id) {
-		$item = Form::findOrFail($id);
+	public function edit($slug) {
+		$formData = config('form-manager.forms.product-create');
 		$form = new FormRender;
 		$form->config = [
 			'method' => 'PUT',
-			'url' => '/form-manager/forms/'.$id,
+			'url' => '/form-manager/forms/'.$slug,
 		];
-		$form->values = $item;
+
+		$form->values = $formData;
 		$form->fields = [
 			'name' => [
 				'label' => 'Név',
@@ -121,8 +123,7 @@ class FormController extends Controller {
 						'placeholder' => 'Mező neve',
 					],
 			  ],
-			  'rows' => $item->fields,
-
+			  'rows' => array_values($formData['fields']),
 			],
 		];
 
@@ -131,8 +132,22 @@ class FormController extends Controller {
 		return view('form-manager-creator::form',compact('form','title'));
 	}
 
-	public function update(FormRequest $request, $id) {
+	public function update(FormRequest $request, $slug) {
 		$inputs = $request->all()['crud'];
+		
+		$existingForms = config('form-manager.forms');
+		
+		$newInputs = $inputs;
+		$newInputs['fields'] = [];
+		foreach ($inputs['fields'] as $key => $field) {
+			$newInputs['fields'][$field['name']] = $field;
+		}
+		$existingForms[$inputs['slug']] = $newInputs;
+	    $data = var_export($existingForms, 1);
+	    if(\File::put(base_path() . '/config/form-manager/forms.php', "<?php\n return $data ;")) {
+	    	\Artisan::call('config:cache');
+	    }
+		/*
 		$form = Form::findOrFail($id);
 
 		$form->fill([
@@ -154,7 +169,7 @@ class FormController extends Controller {
 
 			$fieldItem->delete();
 		}
-
+		*/
 		return Redirect::to('/form-manager');
 	}
 

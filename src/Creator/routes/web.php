@@ -6,8 +6,8 @@
 	Route::get('/', 'FormController@index');
 	Route::resource('/forms', 'FormController');
 
-	Route::get('/forms/{id}/attributes', 'AttributeController@index');
-	Route::post('/forms/{id}/attributes', 'AttributeController@update');
+	Route::get('/forms/{slug}/attributes', 'AttributeController@index');
+	Route::post('/forms/{slug}/attributes', 'AttributeController@update');
 
     Route::get('/assets/{folder}/{file}', 'AssetController@getAsset');
 

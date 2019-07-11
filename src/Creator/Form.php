@@ -5,16 +5,17 @@ class Form {
 
   public static function getFields($type)
   {
-    $form = CreatorForm::where('slug','=', $type)->first();
-
-    $originalFields = $form ? $form->fields : [];
+    $form = config('form-manager.forms.'.$type);
+    $originalFields = $form ? $form['fields'] : [];
     $fields = [];
 
     foreach ($originalFields as $field) {
-      $fields[$field->name] = [
-        'type' => $field->type,
-        'label' => $field->label,
-        'attributes' => $field->attributes()->pluck('value','attribute')->all(),
+      $attributes = isset($field['attributes']) ? $field['attributes'] : [];
+
+      $fields[$field['name']] = [
+        'type' => $field['type'],
+        'label' => $field['label'],
+        'attributes' => $attributes,
       ];
     }
 

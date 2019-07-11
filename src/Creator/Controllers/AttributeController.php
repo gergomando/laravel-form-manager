@@ -9,13 +9,18 @@ use webmuscets\FormManager\Render\Form as FormRender;
 use webmuscets\FormManager\Creator\Requests\FieldAttributeRequest;
 
 class AttributeController extends Controller {
-	public function index($id) {
-		$form = Form::findOrFail($id);
-		$attributes = [];
-		$fields = $form->fields()->pluck('name','id')->all();
+	public function index($slug) {
+		$form = config('form-manager.forms.'.$slug);
 
-		foreach ($form->fields as $field) {
-			foreach ($field->attributes as $attribute) {
+		$attributes = [];
+		$fields = [];
+		foreach ($form['fields'] as $field) {
+			$fields[$field['name']] = $field['name'];
+
+			if(!isset($field['attributes']))
+				continue;
+
+			foreach ($field['attributes'] as $attribute) {
 				$attributes[] = $attribute;
 			}
 		}
@@ -23,7 +28,7 @@ class AttributeController extends Controller {
 		$form = new FormRender;
 		$form->config = [
 			'method' => 'POST',
-			'url' => '/form-manager/forms/'.$id.'/attributes',
+			'url' => '/form-manager/forms/'.$slug.'/attributes',
 		];
 		$form->fields = [
 			'attributes' => [
@@ -31,13 +36,8 @@ class AttributeController extends Controller {
 			  'type' => 'multiline',
 			  'fields' => [
 					[
-						'type' => 'hidden',
-						'property' => 'id',
-					],
-
-					[
 						'type' => 'select',
-						'property' => 'field_id',
+						'property' => 'field',
 						'required' => true,
 						'listItems' => $fields,
 					],
@@ -55,7 +55,7 @@ class AttributeController extends Controller {
 						'placeholder' => 'value',
 					],
 			  	],
-			  	'rows' => $attributes,
+			  	'rows' => array_values($attributes),
 			],
 		];
 
@@ -64,19 +64,19 @@ class AttributeController extends Controller {
 		return view('form-manager-creator::form',compact('form','title'));
 	}
 
-	public function update(FieldAttributeRequest $request, $id) {
+	public function update(FieldAttributeRequest $request, $slug) {
 		$inputs = $request->all()['crud'];
-
-		$deletableItems = isset($request['deletableItems']) && is_array($request['deletableItems']) ? $request['deletableItems'] : [];
 		
-		foreach ($inputs['attributes'] as $attribute) {
-			FormFieldAttribute::updateOrCreate(['id' => $attribute['id']], $attribute);
+		$forms = config('form-manager.forms');
+
+		foreach ($inputs['attributes'] as $key => $field) {
+			$forms[$slug]['fields'][$field['field']]['attributes'][$field['attribute']] = $field['value'];
 		}
 
-		foreach ($deletableItems as $itemID) {
-			$attribute = FormFieldAttribute::findOrFail($itemID);
-			$attribute->delete();
-		}
+	  	$data = var_export($forms, 1);
+	    
+	    if(\File::put(base_path() . '/config/form-manager/forms.php', "<?php\n return $data ;"))
+	    	\Artisan::call('config:cache');
 
 		return Redirect::to('/form-manager');
 	}
