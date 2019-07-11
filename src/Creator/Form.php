@@ -5,7 +5,7 @@ class Form {
 
   public static function getFields($type)
   {
-    $form = config('form-manager.'.$type);
+    $form = config('form-manager-forms.'.$type);
     $originalFields = $form ? $form['fields'] : [];
     $fields = [];
 

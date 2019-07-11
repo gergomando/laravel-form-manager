@@ -13,7 +13,7 @@ use Illuminate\Support\ServiceProvider;
             $this->loadMigrationsFrom(__DIR__.'/Creator/migrations');
        
             $this->publishes([
-                __DIR__.'/config/form-manager.php' => config_path('form-manager.php'),
+                __DIR__.'/config/form-manager-forms.php' => config_path('form-manager-forms.php'),
             ],'form-manager');
         }
         
