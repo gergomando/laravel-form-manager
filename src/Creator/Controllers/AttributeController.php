@@ -75,7 +75,7 @@ class AttributeController extends Controller {
 
 	  	$data = var_export($forms, 1);
 	    
-	    if(\File::put(base_path() . '/config/form-manager/forms.php', "<?php\n return $data ;"))
+	    if(\File::put(base_path() . '/config/form-manager-forms.php', "<?php\n return $data ;"))
 	    	\Artisan::call('config:cache');
 
 		return Redirect::to('/form-manager');

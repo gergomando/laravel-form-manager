@@ -75,7 +75,7 @@ class FormController extends Controller {
 
 		$array = config('form-manager-forms') + [$inputs['slug'] => $newInputs];
 	    $data = var_export($array, 1);
-	    if(\File::put(base_path() . '/config/form-manager/forms.php', "<?php\n return $data ;"))
+	    if(\File::put(base_path() . '/config/form-manager-forms.php', "<?php\n return $data ;"))
 	    	\Artisan::call('config:cache');
 
 		return Redirect::to('/form-manager');
@@ -144,7 +144,7 @@ class FormController extends Controller {
 		}
 		$existingForms[$inputs['slug']] = $newInputs;
 	    $data = var_export($existingForms, 1);
-	    if(\File::put(base_path() . '/config/form-manager/forms.php', "<?php\n return $data ;")) {
+	    if(\File::put(base_path() . '/config/form-manager-forms.php', "<?php\n return $data ;")) {
 	    	\Artisan::call('config:cache');
 	    }
 		/*
