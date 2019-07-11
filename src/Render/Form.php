@@ -33,7 +33,7 @@ class Form {
 
       foreach ($form['fields'] as $fieldName => $field) {
         $formObject->fields[$fieldName] = view('form-manager-render::field', ['field' => $field])->render() ;
-      }
+      } 
 
       return $formObject;
   }
