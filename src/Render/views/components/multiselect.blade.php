@@ -1,7 +1,6 @@
 <div class="form-group bmd-form-group">
-    <label class="control-label" for="{{{ $field['name'] }}}">
-        {{{ $field['label'] }}}
-    </label>
+    @include('form-manager-render::components.label')
+
 	<multiselect-component 
         :selected="{{{ json_encode($field['value']) }}}" 
         :name="{{{ json_encode($field['name']) }}}" 

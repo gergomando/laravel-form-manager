@@ -1,12 +1,17 @@
 <div class="form-group bmd-form-group">
-    <label class="control-label" for="{{{ $field['name'] }}}">
-        {{{ $field['label'] }}}
-    </label>
-    <select class="form-control" name="{{{ $field['name'] }}}">
+    @include('form-manager-render::components.label')
+
+    <select 
+        @include('form-manager-render::components.field_attributes', ['attributes' => array_merge([
+            'name' => $name,
+            'value' => $value,
+            'class' => 'form-control'
+        ], $attributes)])
+    >
         @foreach($field['list'] as $option => $optionLabel)
             <option 
-                value="{{{ option }}}"
-                @if($field['value'] === $option)
+                value="{{{ $option }}}"
+                @if($value == $option)
                     selected="selected"
                 @endif
             >

@@ -4,7 +4,7 @@
 @endif
 >
 <fileupload-component
-    :input-name="'{{{ $field['name'] }}}'"
+    :input-name="'{{{ $name }}}'"
     :show-preview="true"
 ></fileupload-component>
 @include('form-manager-render::components.validation')

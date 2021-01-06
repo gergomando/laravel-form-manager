@@ -1,7 +1,13 @@
 <div class="form-group">
-    <label class="control-label" for="{{{ $field['name'] }}}">
-        {{{ $field['label'] }}}
-    </label>
-    <input type="email" name="{{{ $field['name'] }}}" value="{{{ $field['value'] }}}" class="form-control">
+    @include('form-manager-render::components.label')
+
+    <input 
+        @include('form-manager-render::components.field_attributes', ['attributes' => array_merge([
+            'name' => $name,
+            'value' => $value,
+            'class' => 'form-control',
+            'type' => 'email'
+        ], $attributes)])
+    >
     @include('form-manager-render::components.validation')
 </div>

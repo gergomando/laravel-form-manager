@@ -1,8 +1,13 @@
-<form method="POST" action="{{{ $form['config']['url'] }}}">
+@php
+ $url = $form['config']['url'];
+ $method = $form['config']['method'];
+@endphp
+
+<form method="POST" action="{{ $url }}" enctype="multipart/form-data">
     @csrf
 
-    @if(isset($form['config']['method']) && $form['config']['method'] === 'PUT')
-    @method('PUT')
+    @if($method === 'PUT')
+        @method('PUT')
     @endif
 
     @foreach($form['fields'] as $name => $field)

@@ -1,5 +1,5 @@
 @php
-    $columnName = str_replace(']', '', str_replace('[', '.', $column));
+    $columnName = str_replace(']', '', str_replace('[', '.', $field['name']));
 @endphp
 
 @if($errors->has($columnName))

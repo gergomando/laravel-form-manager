@@ -4,11 +4,14 @@
 			{{{ $field['label'] ? $field['label'] : ' ' }}}
 		</div>
 		<label class="form-check-label">
-				<input type="checkbox" name="{{{ $field['name'] }}}" class="form-check-input" 
-				@if ($field['value'])
-				checked="checked" 
-				@endif
-				>
+			<input
+                @include('form-manager-render::components.field_attributes', ['attributes' => array_merge([
+                    'name' => $name,
+                    'value' => $value,
+                    'class' => 'form-check-input',
+                    'type' => 'checkbox'
+                ], $attributes, $value ? ['checked' => 'checked'] : [])])
+            >
 			<span class="form-check-sign"><span class="check"></span></span>
 		</label>
 	</div>
