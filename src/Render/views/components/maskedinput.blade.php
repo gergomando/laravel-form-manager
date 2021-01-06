@@ -1,12 +1,16 @@
 <div class="form-group bmd-form-group">
-    {{ Form::label($column, $label ? $label : ' ', ['class' => 'control-label bmd-label-static']) }}
-    
-    @if(isset($attributes['mask']))
-    <maskedinput-component :default-value="{{{ json_encode($value) }}}" :mask="{{{ json_encode($attributes['mask']) }}}" :name="{{{ json_encode($column) }}}"></maskedinput-component>
+    <label class="control-label" for="{{{ $field['name'] }}}">
+        {{{ $field['label'] }}}
+    </label>
+    @if(isset($field['attributes']['mask']))
+    <maskedinput-component 
+        :default-value="{{{ json_encode($field['value']) }}}" 
+        :mask="{{{ json_encode($field['attributes']['mask']) }}}" 
+        :name="{{{ json_encode($field['name']) }}}"
+    ></maskedinput-component>
     @else
-    {{ Form::text($column, $value, array_merge(['class' => 'form-control'], $attributes)) }}
+    <input type="text" name="{{{ $field['name'] }}}" value="{{{ $field['value'] }}}" class="form-control">
     @endif
-
     @include('form-manager-render::components.validation')
 </div>
 

@@ -1,52 +1,51 @@
-@include('form-manager-render::components')
-@if(!isset($field['type']) || $field['type'] == 'text')
-    {{{ Form::fieldText($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
-@else
-    @if($field['type'] == 'datepicker')
-        {{{ Form::fieldDatepicker($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
-    @endif
+@if(!isset($field['type']) || $field['type'] === 'text')
+    @include('form-manager-render::components.text',['field' => $field])
+@endif
 
-    @if($field['type'] == 'hidden')
-        {{{ Form::hidden($field['name'], $field['value']) }}}
-    @endif
+@if($field['type'] === 'datepicker')
+    @include('form-manager-render::components.datepicker',['field' => $field])
+@endif
 
-    @if($field['type'] == 'email')
-        {{{ Form::fieldEmail($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
-    @endif
+@if($field['type'] === 'hidden')
+    <input type="hidden" name="{{{ $field['name'] }}}" value="{{{ $field['value'] }}}">
+@endif
 
-    @if($field['type'] == 'select')
-        {{{ Form::fieldSelect($field['label'], $field['name'],$field['value'], $field['list'], $field['attributes']) }}}
-    @endif
+@if($field['type'] === 'email')
+    @include('form-manager-render::components.email',['field' => $field])
+@endif
 
-    @if($field['type'] == 'multiselect')
-        {{{ Form::fieldMultiSelect($field['label'], $field['name'],$field['value'], $field['list'], $field['attributes']) }}}
-    @endif
+@if($field['type'] === 'select')
+    @include('form-manager-render::components.select',['field' => $field])
+@endif
 
-    @if($field['type'] == 'maskedinput')
-        {{{ Form::fieldMaskedInput($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
-    @endif
+@if($field['type'] === 'multiselect')
+    @include('form-manager-render::components.multiselect',['field' => $field])
+@endif
 
-    @if($field['type'] == 'password')
-        {{{ Form::fieldPassword($field['label'], $field['name'], $field['attributes']) }}}
-    @endif
+@if($field['type'] === 'maskedinput')
+    @include('form-manager-render::components.maskedinput',['field' => $field])
+@endif
 
-    @if($field['type'] == 'textarea')
-        {{{ Form::fieldTextarea($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
-    @endif
+@if($field['type'] === 'password')
+    @include('form-manager-render::components.password',['field' => $field])
+@endif
 
-    @if($field['type'] == 'texteditor')
-        {{{ Form::fieldTexteditor($field['label'], $field['name'], $field['value'], $field['attributes']) }}}
-    @endif
+@if($field['type'] === 'textarea')
+    @include('form-manager-render::components.textarea',['field' => $field])
+@endif
 
-    @if($field['type'] == 'multiline')
-        {{{ Form::fieldMultiline(isset($field['label']) ? $field['label'] : false, $field['name'], $field['fields'] , isset($field['rows']) ? $field['rows'] : [], isset($field['config']) ? $field['config'] : []) }}}
-    @endif
+@if($field['type'] === 'texteditor')
+    @include('form-manager-render::components.texteditor',['field' => $field])
+@endif
 
-    @if($field['type'] == 'checkbox')
-        {{{ Form::fieldCheckbox($field['label'], $field['name'],$field['value'], $field['attributes']) }}}
-    @endif
+@if($field['type'] === 'multiline')
+    @include('form-manager-render::components.multiline',['field' => $field])
+@endif
 
-    @if($field['type'] == 'file')
-        {{{ Form::fieldFile($field['label'], $field['name'], $field['attributes']) }}}
-    @endif
+@if($field['type'] === 'checkbox')
+    @include('form-manager-render::components.checkbox',['field' => $field])
+@endif
+
+@if($field['type'] === 'file')
+    @include('form-manager-render::components.file',['field' => $field])
 @endif

@@ -1,5 +1,7 @@
 <div class="form-group">
-    {{ Form::label($column, $label ? $label : ' ', ['class' => 'control-label']) }}
-    {{ Form::password($column, array_merge(['class' => 'form-control'], $attributes)) }}
+    <label class="control-label" for="{{{ $field['name'] }}}">
+        {{{ $field['label'] }}}
+    </label>
+    <input type="password" name="{{{ $field['name'] }}}" value="{{{ $field['value'] }}}" class="form-control">
     @include('form-manager-render::components.validation')
 </div>

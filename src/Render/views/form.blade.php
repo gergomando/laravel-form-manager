@@ -1,13 +1,19 @@
-@include('form-manager-render::components')
+<form method="POST" action="{{{ $form['config']['url'] }}}">
+    @csrf
 
-{{{ Form::open($form['config']) }}}
+    @if(isset($form['config']['method']) && $form['config']['method'] === 'PUT')
+    @method('PUT')
+    @endif
 
-@foreach($form['fields'] as $name => $field)
+    @foreach($form['fields'] as $name => $field)
+        @include('form-manager-render::field',['field' => $field])
+    @endforeach
 
-    @include('form-manager-render::field',['field' => $field])
-
-@endforeach
-
-{{{ Form::button(isset($form['config']['submit_caption']) ? $form['config']['submit_caption'] : 'Mentés', ['type' => 'submit', 'class' => 'btn btn-primary']) }}}
-
-{{{ Form::close() }}}
+    <button class="btn btn-primary">
+        @if(isset($form['config']['submit_caption']))
+            {{{ $form['config']['submit_caption'] }}}
+        @else
+            Mentés
+        @endif
+    </button>
+</form>

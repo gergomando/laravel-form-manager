@@ -1,6 +1,11 @@
 <div class="form-group bmd-form-group">
-    {{ Form::label($column, $label ? $label : ' ', ['class' => 'control-label bmd-label-static']) }}
-	<multiselect-component :selected="{{{ json_encode($default) }}}" :name="{{{ json_encode($column) }}}" :options="{{{ json_encode($list) }}}"></multiselect-component>
+    <label class="control-label" for="{{{ $field['name'] }}}">
+        {{{ $field['label'] }}}
+    </label>
+	<multiselect-component 
+        :selected="{{{ json_encode($field['value']) }}}" 
+        :name="{{{ json_encode($field['name']) }}}" 
+        :options="{{{ json_encode($field['list']) }}}"></multiselect-component>
     @include('form-manager-render::components.validation')
 </div>
 

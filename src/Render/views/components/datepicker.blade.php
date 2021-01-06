@@ -1,5 +1,7 @@
 <div class="form-group">
-    {{ Form::label($column, $label ? $label : ' ', ['class' => 'control-label']) }}
-    {{ Form::text($column, $value, array_merge(['class' => 'form-control date-picker-input'], $attributes)) }}
+    <label class="control-label" for="{{{ $field['name'] }}}">
+        {{{ $field['label'] }}}
+    </label>
+    <input type="text" name="{{{ $field['name'] }}}" value="{{{ $field['value'] }}}" class="form-control date-picker-input">
     @include('form-manager-render::components.validation')
 </div>
