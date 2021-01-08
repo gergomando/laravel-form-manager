@@ -7,7 +7,7 @@
 			<input
                 @include('form-manager-render::components.field_attributes', ['attributes' => array_merge([
                     'name' => $name,
-                    'value' => $value,
+                    'value' => 1,
                     'class' => 'form-check-input',
                     'type' => 'checkbox'
                 ], $attributes, $value ? ['checked' => 'checked'] : [])])
